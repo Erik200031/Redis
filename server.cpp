@@ -40,7 +40,7 @@ void myl::server::conect(int argc, char **argv)
 void myl::server::communicate()
 {
     char buffer[256];
-    while (strcmp(buffer,"Exit"))
+    while (strcmp(buffer,"QUIT"))
     {
         bzero(buffer,256);
         int n = read(newsockfd,buffer,255);
@@ -50,7 +50,8 @@ void myl::server::communicate()
         }
 
         std::cout << "Here is the message: " << buffer << std::endl; // tpume clientis stacac stringy
-
+        String text(buffer);
+        
         n = write(newsockfd,"OK",3);  // uxarkum e clientin tvac stringy
 
         if (n < 0) {
