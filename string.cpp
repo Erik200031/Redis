@@ -23,6 +23,10 @@ String::String(int size)
     capacity = 16;
 }
 
+char* String::cstr() {
+    return buffer;
+}
+
 String::String(unsigned int sizee, char ch)
 {
     buffer = new char(sizee+1);

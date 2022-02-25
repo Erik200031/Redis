@@ -28,6 +28,7 @@ public:
     char pop_back();
     void push_front(char symbol);
     char pop_front();
+    char* cstr();
     void resize(const int ,char);
     String& erase(const int,int );
     char erase(const int );
