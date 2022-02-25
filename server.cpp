@@ -43,7 +43,7 @@ void myl::server::communicate()
     while (strcmp(buffer,"Exit"))
     {
         bzero(buffer,256);
-        int n = read(newsockfd,buffer,600);
+        int n = read(newsockfd,buffer,255);
 
         if (n < 0) {
             error("ERROR reading from socket");

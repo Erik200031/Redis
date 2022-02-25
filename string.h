@@ -28,7 +28,7 @@ public:
     char pop_back();
     void push_front(char symbol);
     char pop_front();
-    char* cstr();
+    char* c_str();
     void resize(const int ,char);
     String& erase(const int,int );
     char erase(const int );
@@ -50,14 +50,16 @@ public:
     char& at(const unsigned index);
     const char& at(const unsigned index) const;
     friend std::istream & operator>>(std::istream &in, String &ob);
-    inline int get_size() const {return size;}
+    inline int size() const {return m_size;}
     ~String();
 
 private:
-    int capacity;
-    char* buffer;
-    int size;
+    int m_capacity;
+    char* m_buffer;
+    int m_size;
     const static int LIM = 80;
 
 };
+
+#include "string.hpp"
 #endif //STRING_H_

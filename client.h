@@ -10,7 +10,8 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <iostream>
-#include <string>
+//#include <string>
+#include "string.h"
 
 namespace myl {
     class client
