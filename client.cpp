@@ -44,16 +44,16 @@ void myl::client::conect(int argc, char **argv)
 
 void myl::client::communicate()
 {
-    std::string buffer;
+    String buffer;
 
     while(true)
     {
         buffer.clear();
-        std::getline(std::cin,buffer);
-
+        //std::getline(std::cin,buffer);
+        std::cin >> buffer;
         n = write(sockfd,buffer.c_str(),strlen(buffer.c_str()));  //uxarkume namak serverin
 
-        if(buffer == "Exit") break;
+        if(buffer == "QUIT") break;
 
         if (n < 0) {
             error("ERROR writing to socket");
