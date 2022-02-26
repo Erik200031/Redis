@@ -24,7 +24,7 @@ void myl::server::conect(int argc, char **argv)
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(portno);
 
-    if (bind(sockfd, (struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
+    if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         error("ERROR on binding");
     }
 
@@ -40,7 +40,7 @@ void myl::server::conect(int argc, char **argv)
 void myl::server::communicate()
 {
     char buffer[256];
-    while (strcmp(buffer,"Exit"))
+    while (strcmp(buffer,"QUIT"))
     {
         bzero(buffer,256);
         int n = read(newsockfd,buffer,255);
@@ -50,7 +50,18 @@ void myl::server::communicate()
         }
 
         std::cout << "Here is the message: " << buffer << std::endl; // tpume clientis stacac stringy
-
+        String text(buffer);
+        Parser pars(text);
+        vector<String> vec;
+        pars.parse_code();
+        vec = pars.get_tokens();
+        for(int i = 0; i < vec.getSize(); ++i) {
+            if(vec[i] == "LPUSH") {
+                
+            }
+            
+        }
+        std::cout<<std::endl;
         n = write(newsockfd,"OK",3);  // uxarkum e clientin tvac stringy
 
         if (n < 0) {

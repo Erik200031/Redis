@@ -56,62 +56,28 @@ bool Parser::is_colon (const char& symbol)
     return (symbol == ':');
 }
 
-Parser::Parser(const std::string& file_name)
+Parser::Parser(const String& str):m_str(str) 
 {
-    fin.open(file_name);
-    if (!fin.is_open())
-    {
-        std::cout << "couldn't open file" << std::endl;
-        throw;
-    }
 }
-Parser::~Parser()
-{
-    fin.close();
-}
+
 
 void Parser::parse_code()
 {
-    std::string line;
-    std::string singleToken;
-
-    while (!fin.eof())
-    {
-        line.clear();
-        std::getline(fin, line);
-        for (int i = 0; i <= line.size(); ++i)
-        {
-            if (is_left_parenthese(line[i]) or is_right_parenthese(line[i]
-                                           or is_left_bracket(line[i]) or is_right_bracket(line[i])
-                                           or is_left_brace(line[i]) or is_right_brace(line[i])
-                                           or is_comma(line[i]) or is_semicolon(line[i]) or is_colon(line[i]))
-                                           or is_left_chevron(line[i]) or is_right_chevron(line[i]))
-            {
-                if (!singleToken.empty())
-                {
-                    tokens.push_back(singleToken);
+    String bar ;
+    for(int i = 0;i <= m_str.size() ;++i) {
+            if(m_str[i] >= 'A' && m_str[i] <= 'z' ) {
+                bar.push_back( m_str[i]);
+            } 
+            else {
+                if(bar.size() > 0) {      
+                    tokens.push_back(bar);
                 }
-                singleToken = line[i];
-                tokens.push_back(singleToken);
-                singleToken.clear();
-            }
-                    else if (! is_white_space(line[i]))
-            {
-                singleToken += line[i];
-            }
-            else
-            {
-                if (!singleToken.empty())
-                {
-                    tokens.push_back(singleToken);
-                    singleToken.clear();
-                }
+                bar.clear();
             }
         }
-    }
 }
 
-std::vector<std::string> Parser::get_tokens() const
+vector<String> Parser::get_tokens() const
 {
     return tokens;
 }
