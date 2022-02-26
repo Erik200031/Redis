@@ -2,11 +2,8 @@
 #define PARSER_H
 
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <map>
-#include <vector>
-#include <algorithm>
+#include "vector.h"
+#include "string.h"
 
 class Parser
 {
@@ -24,13 +21,13 @@ public:
     static bool is_semicolon (const char&);
     static bool is_colon (const char&);
 public:
-    Parser(const std::string&);
-    ~Parser();
+    Parser(const String&);
+    ~Parser() = default;
     void parse_code();
-    std::vector<std::string> get_tokens() const;
+    vector<String> get_tokens() const;
 private:
-    std::ifstream fin;
-    std::vector<std::string> tokens;
+    vector<String> tokens;
+    String m_str;
 };
 
 #include "parser.hpp"

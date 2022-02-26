@@ -8,16 +8,17 @@ public:
     vector() ;
     vector(int colum,T value) ;
     vector(const vector & other) ;
-    vector(const vector && other) ;
+    vector(vector && other) ;
     vector & operator=(const vector & other) ;
+    vector & operator=(vector && other) ;
     T operator[] (int index) ;
     ~vector() ;
-    vector(std::initializer_list<T> elems) ;
+    vector(const std::initializer_list<T>& elems) ;
 public:
-    void push_back(T value) ;
+    void push_back(const T& value) ;
     void pop_back() ;
-    T getSize() const { return size; }
-    T getCapacity() const { return capacity; }
+    int getSize() const { return size; }
+    int getCapacity() const { return capacity; }
     void shrink_to_fit() ;
 public:
 
@@ -85,7 +86,7 @@ public:
     iterator end() ;
     void insert(iterator& iter,const T& value) ;
     void erease(iterator& iter) ;
-    T * data() const { return arr; }    
+    const T * data() const { return arr; }    
 private:
     T * arr ;
     int size ;
@@ -102,7 +103,7 @@ vector<T>::vector()
 }
 
 template<typename T>
-vector<T>::vector(std::initializer_list<T> elems) {
+vector<T>::vector(const std::initializer_list<T>& elems) {
     size = elems.size() ;
     capacity = size * 2 ;
     arr = new T[capacity] ;
@@ -113,7 +114,7 @@ vector<T>::vector(std::initializer_list<T> elems) {
 }
 
 template<typename T>
-vector<T>::vector(int colum,T value)
+vector<T>::vector(int colum, T value)
 {
     size = colum ;
     capacity = size * 2 ;
@@ -126,23 +127,22 @@ vector<T>::vector(int colum,T value)
 template<typename T>
 vector<T>::~vector()
 {
-    delete [] arr ;
+    delete[] arr;
 }
 
 template<typename T>
-void vector<T>::push_back(T value) {
+void vector<T>::push_back(const T& value) {
     if(capacity == size) {
         T *tmp = new T[capacity * 2] ;
-        for(int i = 0; i < capacity; i++) {
+        for(int i = 0; i < capacity; ++i) {
             tmp[i] = arr[i] ;
         }
-        delete [] arr ;
-        arr = tmp ;
-        capacity *= 2 ;
-        tmp = nullptr ;
+        delete[] arr;
+        arr = tmp;
+        capacity *= 2;
+        tmp = nullptr;
     }
-    arr[size] = value ;
-    size++ ;
+    arr[size++] = value;
 }
 
 template<typename T>
@@ -162,14 +162,13 @@ vector<T>::vector(const vector & other) {
     this->size = other.size ;
     this->capacity = other.capacity ;
     this->arr = new T [other.capacity] ;
-    for(int i = 0;i < size; i++){
-    
+    for(int i = 0;i < size; i++) {
         this->arr[i] = other.arr[i] ;
     }
 }
 
 template<typename T>
-vector<T>::vector(const vector && other) {
+vector<T>::vector(vector && other) {
     arr = other.arr ;
     this->size = other.size ;
     this->capacity = other.capacity ;
@@ -191,6 +190,19 @@ vector<T> & vector<T>::operator=(const vector & other){
     
         this->arr[i] = other.arr[i] ;
     }
+    return *this ;
+}
+
+template<typename T>
+vector<T> & vector<T>::operator=(vector && other){
+    if(this == &other) {
+        return *this ;
+    }
+    delete[] arr ;
+    this->size = other.size ;
+    this->capacity = other.capacity ;
+    this->arr = other.arr ;
+    other.arr = nullptr;
     return *this ;
 }
 

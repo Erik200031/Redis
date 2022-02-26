@@ -68,6 +68,7 @@ void myl::client::communicate()
         }
 
         std::cout << buffer << std::endl; // tpume serveric ekac namaky
+        
     }
 }
 

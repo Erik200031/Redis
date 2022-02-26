@@ -65,9 +65,10 @@ String::String(const String & obj)
     this->m_size = obj.m_size;
     this->m_capacity = obj.m_capacity;
     this->m_buffer = new char(obj.m_size);
-    for(int i = 0; i < obj.m_size; ++i) {
+    for(int i = 0; i <= obj.m_size; ++i) {
         this->m_buffer[i] = obj.m_buffer[i];
     }
+
 }
 
 String::String(String && ob)
@@ -75,6 +76,7 @@ String::String(String && ob)
     this->m_size = ob.m_size;
     this->m_capacity = ob.m_capacity;
     this->m_buffer = ob.m_buffer;
+    this->m_buffer[m_size] = '\0';
     ob.m_buffer = nullptr;
     ob.m_size = 0;
 }
@@ -85,6 +87,7 @@ String& String::operator=(String&& obj)
     delete[] this->m_buffer;
     this->m_buffer = obj.m_buffer;
     this->m_capacity = obj.m_capacity;
+    this->m_buffer[m_size] = '\0';
     obj.m_buffer = nullptr;
     return *this;
 }
@@ -103,7 +106,7 @@ String& String::operator=(const String& obj)
     this->m_size = obj.m_size;
     this->m_capacity = obj.m_capacity;
     this->m_buffer = new char(obj.m_size);
-    for(int i = 0; i < obj.m_size; ++i){
+    for(int i = 0; i <= obj.m_size; ++i){
         this->m_buffer[i] = obj.m_buffer[i];
     }
     return *this;
@@ -227,6 +230,7 @@ void String::push_back(char symbol)
         m_buffer[m_size] = symbol;
         ++m_size;
         m_buffer[m_size] = '\0';
+        return;
     }
     String tmp(*this);
     if(this->m_size != 0 && this->m_size == this->m_capacity) {
@@ -478,8 +482,9 @@ void String::insert(const int index, const char* symbols)
 
 void String::clear()
 {
-    m_size = 0;
-    m_buffer[m_size] = '\0';
+    while(m_size) {
+        pop_back();
+    }
 }
 
 bool String::empty()
