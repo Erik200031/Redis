@@ -28,6 +28,7 @@ namespace myl {
         void conect(int argc, char *argv[]);
         void communicate();
         void error(const char*);
+     
     private:
         int sockfd;
         int newsockfd;

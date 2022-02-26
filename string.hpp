@@ -68,7 +68,7 @@ String::String(const String & obj)
     for(int i = 0; i <= obj.m_size; ++i) {
         this->m_buffer[i] = obj.m_buffer[i];
     }
-
+    
 }
 
 String::String(String && ob)

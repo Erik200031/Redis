@@ -3,6 +3,7 @@
 #include <iostream>
 #include "utility.h"
 
+
 class String
 {
 public:
@@ -60,6 +61,7 @@ private:
     const static int LIM = 80;
 
 };
+
 
 #include "string.hpp"
 #endif //STRING_H_
