@@ -1,34 +1,34 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <string>
 #include <iostream>
+#include "string.h"
 
 class List
 {
 public:
 	List() = default;
-	List(const std::string& str);  //param ctor
-	List(const List& other);  //copy
-	List& operator=(const List& other);  //assignment
-	~List();  //dtor
+	List(const String& str);  
+	List(const List& other);  
+	List& operator=(const List& other);  
+	~List();  
 
-	void push_back(const std::string& str);
-	void push_front(const std::string& str);
+	void push_back(const String& str);
+	void push_front(const String& str);
 	void pop_back();
 	void pop_front();
 	void print_from_head() const;
 	void print_from_tail() const;
-	std::string get(int which);
+	String get(int which) const;
 	void clear();
 
 private:
 	struct Node
 	{
 		Node() = default;
-		Node(std::string str, Node* n = nullptr, Node* p = nullptr) : val(str), next(n), prev(p) {}
+		Node(String str, Node* n = nullptr, Node* p = nullptr) : val(str), next(n), prev(p) {}
 		
-		std::string val;
+		String val;
 		Node* next{};
 		Node* prev{};
 	};

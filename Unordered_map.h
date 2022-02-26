@@ -1,15 +1,15 @@
 #pragma once
-#include<vector>
-#include<list>
-#include<string>
-#include<exception>
+#include <list>
+#include <exception>
 #include <stdexcept>
+#include "string.h"
+
 
 template<typename Key, typename Val>
 struct pair
 {
-	Key first{};
-	Val second{};
+	Key first {};
+	Val second {};
 	pair() {};
 	pair(Key _k, Val _v) :first(_k), second(_v) {};
 	void swap(pair<Key, Val>& ob)
@@ -29,7 +29,7 @@ struct pair
 struct hesh
 {
 	hesh() = default;
-	uint32_t operator()(const std::string& obj,const uint32_t& tabel_size)const
+	uint32_t operator()(const String& obj,const uint32_t& tabel_size)const
 	{
 		uint32_t h = 0, rand_number_1 = 123456, rand_number_2 = 654321;
 		for (int32_t i=0; i != obj.size(); ++i)
@@ -43,12 +43,12 @@ struct hesh
 
 
 
-template<typename Key,typename Val,typename Hesh_method=hesh>
+template <typename Key,typename Val,typename Hesh_method=hesh>
 class Unordered_map
 {
 private:
-	 Hesh_method hesh_str;
-	std::vector<std::list<std::pair<Key, Val>>>obj;
+	Hesh_method hesh_str;
+	vector<std::list<std::pair<Key, Val>>> obj;
 public:
 	// Constructors
 	Unordered_map() ;
@@ -67,6 +67,7 @@ public:
 	void emplace(const Key&, const Val&);
 	void erase(const Key&);
 	Val& at(const Key&);
+	void clear();
 
 
 	// Destructor
@@ -82,7 +83,7 @@ Unordered_map<Key, Val, Hesh_method>::Unordered_map():obj(500) {};
 template<typename Key, typename Val, typename Hesh_method >
 Unordered_map<Key, Val, Hesh_method>::Unordered_map(const Key& k, const Val& v):obj(500)
 {
-	uint32_t index = hesh_str(k, obj.size());
+	uint32_t index = hesh_str(k, obj.getSize());
 	obj[index].push_back(std::make_pair(k, v));
 }
 
@@ -90,7 +91,7 @@ Unordered_map<Key, Val, Hesh_method>::Unordered_map(const Key& k, const Val& v):
 template<typename Key, typename Val, typename Hesh_method >
 Unordered_map<Key, Val, Hesh_method>::Unordered_map(const Unordered_map<Key, Val, Hesh_method>& other)
 {
-		this->obj = other.obj;
+	this->obj = other.obj;
 }
 
 
@@ -106,7 +107,7 @@ Unordered_map<Key, Val, Hesh_method>::Unordered_map(Unordered_map<Key, Val, Hesh
 template<typename Key, typename Val, typename Hesh_method >
 Val& Unordered_map<Key, Val, Hesh_method>::operator[](const Key& ki)
 {
-	uint32_t ind = hesh_str(ki, obj.size());
+	uint32_t ind = hesh_str(ki, obj.getSize());
 	for (auto it = obj[ind].begin(); it != obj[ind].end(); ++it)
 	{
 		if (it->first == ki)
@@ -148,7 +149,7 @@ Val& Unordered_map<Key, Val, Hesh_method>::operator[](const Key& ki)
  template<typename Key, typename Val, typename Hesh_method >
  void Unordered_map<Key, Val, Hesh_method>::emplace(const Key& ki, const Val& va)
  {
-	 uint32_t ind = hesh_str(ki, obj.size());
+	 uint32_t ind = hesh_str(ki, obj.getSize());
 	 obj[ind].push_back(std::make_pair(ki, va));
  }
 
@@ -193,4 +194,15 @@ Val& Unordered_map<Key, Val, Hesh_method>::operator[](const Key& ki)
 		 obe.what();
 		 abort();
 	 }
+ }
+
+
+
+
+ template<typename Key, typename Val, typename Hesh_method >
+ void Unordered_map<Key,Val,Hesh_method>::clear()
+ {
+	for(int32_t i=0;i<obj.getSize();++i){
+		obj[i].clear();
+	}
  }

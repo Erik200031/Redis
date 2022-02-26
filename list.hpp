@@ -1,6 +1,6 @@
 #include "list.h"
 
-List::List(const std::string& str)
+List::List(const String& str)
 {
 	head = new Node(str);
 	tail = head;
@@ -72,7 +72,7 @@ List::~List()
 	}
 }
 
-void List::push_back(const std::string& str)
+void List::push_back(const String& str)
 {
 	if (! tail)
 	{
@@ -86,7 +86,7 @@ void List::push_back(const std::string& str)
 	}
 }
 
-void List::push_front(const std::string& str)
+void List::push_front(const String& str)
 {
 	if (! head)
 	{
@@ -175,7 +175,7 @@ void List::print_from_tail() const
 	}
 }
 
-std::string List::get(int which)
+String List::get(int which) const
 {
 	if (which < 1)
 	{

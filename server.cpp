@@ -56,12 +56,9 @@ void myl::server::communicate()
         pars.parse_code();
         vec = pars.get_tokens();
         for(int i = 0; i < vec.getSize(); ++i) {
-            if(vec[i] == "LPUSH") {
-                
-            }
+            
             
         }
-        std::cout<<std::endl;
         n = write(newsockfd,"OK",3);  // uxarkum e clientin tvac stringy
 
         if (n < 0) {
@@ -69,6 +66,7 @@ void myl::server::communicate()
         }
     }
 }
+
 
 void myl::server::error(const char *msg)
 {
@@ -81,6 +79,8 @@ myl::server::~server()
     close(newsockfd);
     close(sockfd);
 }
+
+
 
 int main(int argc, char **argv)
 {
