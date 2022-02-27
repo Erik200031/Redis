@@ -48,3 +48,8 @@ String myl::Redis::get_str(const String& str) const
 {
     return str;
 }
+
+int main()
+{
+    
+}
