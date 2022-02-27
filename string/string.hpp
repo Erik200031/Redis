@@ -16,6 +16,7 @@ String::String()
     m_size = 0;
     m_capacity = 16;
     m_buffer = new char(m_capacity);
+    m_buffer[0] = '\0';
 }
 
 String::String(int m_size)
@@ -68,7 +69,6 @@ String::String(const String & obj)
     for(int i = 0; i <= obj.m_size; ++i) {
         this->m_buffer[i] = obj.m_buffer[i];
     }
-    
 }
 
 String::String(String && ob)

@@ -14,6 +14,16 @@ struct pair
 	Val second {};
 	pair() {};
 	pair(Key _k, Val _v) :first(_k), second(_v) {};
+	pair(const pair<Key,Val>&other)
+	{
+		this->first = other.first;
+		this->second = other.second;
+	}
+	pair(pair<Key,Val>&& other)
+	{
+		this->first = other.first;
+		this->second = other.second;
+	}
 	void swap(pair<Key, Val>& ob)
 	{
 		pair<Key, Val>_tmp;
@@ -24,6 +34,13 @@ struct pair
 		ob.first = _tmp.first;
 		ob.second = _tmp.second;
 	}
+	pair<Key,Val>& operator=(const pair<Key,Val>&other)
+	{
+		this->first = other.first;
+		this->second = other.second;
+	}
+
+	~pair(){};
 
 };
 
@@ -36,7 +53,7 @@ struct hesh
 		uint32_t h = 0, rand_number_1 = 123456, rand_number_2 = 654321;
 		for (int32_t i=0; i != ob.size(); ++i)
 		{
-			h = (rand_number_1 * h + static_cast<int32_t>(ob[i])) % tabel_size;
+			h = (rand_number_1 * h + static_cast<int>(ob[i])) % tabel_size;
 			rand_number_1 = (rand_number_1 * rand_number_2) % (tabel_size - 1);
 		}
 		return h < 0 ? h + tabel_size : h;
@@ -45,7 +62,7 @@ struct hesh
 
 
 
-template <typename Key,typename Val,typename Hesh_method=hesh>
+template <typename Key,typename Val,typename Hesh_method = hesh>
 class Unordered_map
 {
 private:
@@ -73,7 +90,7 @@ public:
 
 
 	// Destructor
-	~Unordered_map() {};
+	~Unordered_map() = default;
 
 };
 
@@ -115,11 +132,10 @@ Val& Unordered_map<Key, Val, Hesh_method>::operator[](const Key& ki)
 		if (it->first == ki)
 			return it->second;
 	}
-	obj[ind].push_back(std::make_pair(ki, Val()));
-	auto itr = obj[ind].begin();
+	obj[ind].push_back(std::make_pair(ki,Val()));
+	typename std::list<std::pair<Key,Val>>::iterator itr = obj[ind].begin();
 	itr->first = ki;
 	return itr->second;
-
 }
  
 
@@ -143,7 +159,7 @@ Val& Unordered_map<Key, Val, Hesh_method>::operator[](const Key& ki)
  template<typename Key, typename Val, typename Hesh_method >
  void Unordered_map<Key, Val, Hesh_method>::insert(std::pair<Key, Val>ob)
  {
-	 uint32_t ind = hesh_str(ob.first, obj.size());
+	 uint32_t ind = hesh_str(ob.first, obj.getSize());
 	 obj[ind].push_back(std::make_pair(ob.first, ob.second));
  }
 
@@ -159,7 +175,7 @@ Val& Unordered_map<Key, Val, Hesh_method>::operator[](const Key& ki)
  template<typename Key, typename Val, typename Hesh_method >
  void Unordered_map<Key, Val, Hesh_method>::erase(const Key& ki)
  {
-	 uint32_t ind = hesh_str(ki, obj.size());
+	 uint32_t ind = hesh_str(ki, obj.getSize());
 	 for (auto it = obj[ind].cbegin(); it != obj[ind].cend(); ++it)
 	 {
 		 if (it->first == ki)

@@ -6,12 +6,13 @@ class vector
 {
 public:
     vector() ;
-    vector(int colum,T value) ;
+    vector(int colum,T value ) ;
+    vector(int col);
     vector(const vector & other) ;
     vector(vector && other) ;
     vector & operator=(const vector & other) ;
     vector & operator=(vector && other) ;
-    T operator[] (int index) ;
+    T& operator[] (int index) ;
     ~vector() ;
     vector(const std::initializer_list<T>& elems) ;
 public:
@@ -101,6 +102,16 @@ vector<T>::vector()
     capacity = 1 ;
     arr = new T[1] ;
 }
+
+template<typename T>
+vector<T>::vector(int col)
+{
+    size=col;
+    capacity = 2 *size;
+    arr = new T[capacity];
+
+}
+
 
 template<typename T>
 vector<T>::vector(const std::initializer_list<T>& elems) {
@@ -207,8 +218,8 @@ vector<T> & vector<T>::operator=(vector && other){
 }
 
 template<typename T>
-T vector<T>::operator[](int index) {
-    return *(arr+index) ;
+T& vector<T>::operator[](int index) {
+    return arr[index] ;
 }
 
 template<typename T>
