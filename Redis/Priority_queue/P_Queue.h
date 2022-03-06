@@ -3,7 +3,6 @@
 
 #include"../string/string.h"
 
-
 namespace myl
 {
     template <typename T>
@@ -209,7 +208,6 @@ namespace myl
         }
     }
 
-
     template<typename T>
     void myl::P_Queue<T>::clear()
     {
@@ -220,11 +218,5 @@ namespace myl
     }
 
 } // namespace myl
-
-
-
-
-
-
 
 #endif //P_QUEUE_H
