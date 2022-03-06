@@ -21,11 +21,11 @@ class Socket_sender
     ~Socket_sender() = default;
 
     private:
-    int                 sockfd;
-    sockaddr_in         server_addr;
-    string              server_ip;
-    char                recv_line[255];
-    string              send_line;
+    int sockfd;
+    sockaddr_in server_addr;
+    string server_ip;
+    char recv_line[255];
+    string send_line;
 };
 
 #endif //CLIENT_H
