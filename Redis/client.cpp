@@ -60,11 +60,12 @@ int main()
 	{
 		socket.send_and_recv(str);
 		std::cout<<std::endl;
-		if ("QUIT" == str)
+		if ("QUIT" == str) {
 			break;
+		}
+		
 		std::cout<< "redis -> ";
 	}
-
 
 	return (0);
 }
