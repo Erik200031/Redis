@@ -1,5 +1,5 @@
 #ifndef SERVER_H
-# define SERVER_H
+#define SERVER_H
 
 #include <iostream>
 #include <fstream>
@@ -33,19 +33,19 @@ class Socket_reciver
     void    accept_clients();
 
     private:
-    int         listenfd;
-    int         *connfd;
+    int listenfd;
+    int* connfd;
     sockaddr_in serv_addr;
     sockaddr_in cli_addr;
-    pthread_t   tid;
+    pthread_t tid;
 
-    static void*    server_thread_routine(void *arg)
+    static void* server_thread_routine(void *arg)
     {
-        int     _connfd;
-        int     n;
-        char    recv_line[MAXLINE];
-        int     pid;
-        int     recv_line_len;
+        int _connfd;
+        int n;
+        char recv_line[MAXLINE];
+        int pid;
+        int recv_line_len;
         myl::Redis client;
         Parser pars;
 
@@ -83,4 +83,4 @@ class Socket_reciver
     char **get_arr_from_command(char *command);
 };
 
-#endif
+#endif //SERVER_H
