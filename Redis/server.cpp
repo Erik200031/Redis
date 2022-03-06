@@ -3,9 +3,6 @@
 #include <cstring>
 #include "server.h"
 
-using std::string;
-using std::cout;
-
 Socket_reciver::Socket_reciver()
 {
     listenfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -74,8 +71,6 @@ char**    Socket_reciver::get_arr_from_command(char *command)
     arr[i++] = NULL;
     return (arr);
 }
-
-// static void*   Socket_reciver::server_thread_routine(void *arg);
 
 int main()
 {
