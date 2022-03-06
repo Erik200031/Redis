@@ -1,5 +1,5 @@
 # Redis
-LPUSH         -> Adds element(s) in the front of the List           E.G. LPUSH List_name value
+LPUSH         -> Adds element(s) in the front of the List           E.G. LPUSH List_name value <br/>
 RPUSH         -> Adds element(s) in the end of the List             E.G. RPUSH List_name value
 GET_LIST      -> Returns all elements of the List                   E.G. GET_LIST List_name
 CLEAR_LIST    -> Deletes all elements of the List                   E.G. CLEAR_LIST List_name
