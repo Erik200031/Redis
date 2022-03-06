@@ -1,13 +1,10 @@
 #ifndef CLIENT_H
-# define CLIENT_H
+#define CLIENT_H
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
-
 #include <cstring>
-
 #include <iostream>
-
 
 using std::string;
 using std::cout;
@@ -20,7 +17,7 @@ class Socket_sender
 {
     public:
     Socket_sender();
-    void    send_and_recv(const string&);
+    void send_and_recv(const string&);
     ~Socket_sender() = default;
 
     private:
@@ -31,5 +28,4 @@ class Socket_sender
     string              send_line;
 };
 
-
-#endif
+#endif //CLIENT_H
