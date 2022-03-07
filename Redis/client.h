@@ -6,7 +6,6 @@
 #include <cstring>
 #include <iostream>
 
-using std::string;
 using std::cout;
 
 typedef  sockaddr SA;
