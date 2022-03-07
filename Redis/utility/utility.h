@@ -1,6 +1,6 @@
 #ifndef UTILITY_H_
 #define UTILITY_H_
-#include<math.h>
+#include <math.h>
 #include"../vector/vector.h"
 #include "../string/string.h"
 
