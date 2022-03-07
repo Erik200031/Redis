@@ -15,12 +15,12 @@ const int SERVER_PORT = 1800;
 
 class Socket_sender
 {
-    public:
+public:
     Socket_sender();
     void send_and_recv(const string&);
     ~Socket_sender() = default;
 
-    private:
+private:
     int sockfd;
     sockaddr_in server_addr;
     string server_ip;
