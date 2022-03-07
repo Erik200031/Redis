@@ -66,7 +66,7 @@ namespace myl
 
     };
 
-}
+} // namespace myl
 
 #include "string.hpp"
 
