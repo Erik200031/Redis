@@ -3,9 +3,12 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
+
 #include <cstring>
 #include <iostream>
+#include <string>
 
+using std::string
 using std::cout;
 
 typedef  sockaddr SA;
