@@ -55,16 +55,16 @@ int main()
 {
 	std::string str;
 	Socket_sender socket;
-	std::cout<< "redis -> ";
+	std::cout << "redis -> ";
 	while (std::getline(std::cin, str))
 	{
 		socket.send_and_recv(str);
-		std::cout<<std::endl;
+		std::cout << std::endl;
 		if ("QUIT" == str) {
 			break;
 		}
 		
-		std::cout<< "redis -> ";
+		std::cout << "redis -> ";
 	}
 
 	return (0);
