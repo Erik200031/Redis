@@ -129,7 +129,7 @@ myl::String myl::Redis::rpush(const vector<String>& text)
     }
     if(text.size() == 2) {
         um_sl[text[1]];
-        return  "Empty list creating\n";
+        return "Empty list creating\n";
     }
     return "Invalid command\nTry HELP\n";
 }
@@ -138,8 +138,8 @@ myl::String myl::Redis::get_list(const vector<String>& text)
 {
     if(text.size() == 2 and !(um_sl[text[1]].is_empty())) {
         String str{};
-        for(auto it=um_sl[text[1]].begin();it!=um_sl[text[1]].end();++it) {
-            str = str + (*it) +'\n';
+        for(auto it = um_sl[text[1]].begin(); it != um_sl[text[1]].end(); ++it) {
+            str = str + (*it) + '\n';
         }
         return str;
     }
@@ -168,7 +168,7 @@ myl::String myl::Redis::clear_list(const vector<String>&text)
     if(text.size() == 2 ) {
         if(um_sl[text[1]].size()) {
             um_sl[text[1]].clear();
-            return (text[1] + " named list is cleaned\n");
+            return (text[1] + " named list is cleaned\n") ;
         }
         return text[1] + " named list is already empty\n";
     }
@@ -179,7 +179,7 @@ myl::String myl::Redis::um_push(const vector<String>&text)
 {
 
     if(text.size() % 2 == 0 and text.size() > 2) {
-        for(int i = 2;i < text.size();i += 2) {
+        for(int i = 2; i < text.size(); i += 2) {
             um_umss[text[1]].emplace(text[i], text[i + 1]);
         }
         return "Complate push in U_map\n";
@@ -244,7 +244,7 @@ myl::String myl::Redis::get_queue(const vector<String>& text)
 
 myl::String myl::Redis::get_queue_top(const vector<String>& text)
 {
-    if(text.size() == 2  ) {
+    if(text.size() == 2) {
         if(!(um_sq[text[1]].is_empty())) {
             return um_sq[text[1]].top();
         }
