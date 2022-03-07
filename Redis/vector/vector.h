@@ -61,9 +61,8 @@ namespace myl {
         int _size;
         int _capacity;
     };
-
-}
+} //namespace myl
 
 #include "vector.hpp"
 
-#endif
+#endif //VECTOR_H
