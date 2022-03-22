@@ -7,7 +7,7 @@
 
 struct Utility
 {
-   /* static int stoi(const String& str) 
+    static int stoi(const String& str) 
     {
  	   vector<int> vec;
  	   for (int i = 0; i < str.size(); ++i) 
@@ -20,7 +20,7 @@ struct Utility
  		   res += vec[i] * pow(10, vec.getSize() - i - 1);
 	   }
 	   return res;
-   }*/
+   }
     static unsigned int my_strlen(const char *s);
 };
 
