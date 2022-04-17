@@ -101,7 +101,8 @@ myl::String myl::Redis::Help(const vector<String>& text)
         "SET_QUEUE     -> Adds element in Priority_Queue                     \"E.G. SET_QUEUE Queue_name value priority\"\n"
         "GET_QUEUE     -> Returns all elements of Priority_Queue             \"E.G. GET_QUEUE Queue_name\"\n"
         "GET_QUEUE_TOP -> Returns the top element of Priority_Queue          \"E.G. GET_QUEUE_TOP Queue_name\"\n"
-        "CLEAR_QUEUE   -> Deletes all elements from Priority_Queue           \"E.G. CLEAR_QUEUE Queue_name\"\n";
+        "CLEAR_QUEUE   -> Deletes all elements from Priority_Queue           \"E.G. CLEAR_QUEUE Queue_name\"\n"
+	"QUIT 	      -> For close the program";
 }
 
 myl::String myl::Redis::lpush(const vector<String>& text)

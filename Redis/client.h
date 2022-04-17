@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 
-using std::string
+using std::string;
 using std::cout;
 
 typedef  sockaddr SA;

@@ -1,23 +1,23 @@
 #ifndef UTILITY_H_
 #define UTILITY_H_
 #include <math.h>
-#include"../vector/vector.h"
-#include "../string/string.h"
+#include <string>
 
+#include"../vector/vector.h"
 
 struct Utility
 {
-    static int stoi(const String& str) 
+    static int stoi(const std::string& str) 
     {
- 	   vector<int> vec;
+ 	  myl::vector<int> vec;
  	   for (int i = 0; i < str.size(); ++i) 
         {
  		   vec.push_back(str[i] - '0');
  	   }
  	   int res = 0;
- 	   for (int i = vec.getSize() - 1; i >= 0; --i) 
+ 	   for (int i = vec.size() - 1; i >= 0; --i) 
        {
- 		   res += vec[i] * pow(10, vec.getSize() - i - 1);
+ 		   res += vec[i] * pow(10, vec.size() - i - 1);
 	   }
 	   return res;
    }

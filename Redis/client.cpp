@@ -4,7 +4,7 @@
 
 Socket_sender::Socket_sender()
 {
-	server_ip = "192.168.11.217";
+	server_ip = "192.168.224.145";
 	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	{
 		std::cerr << "Error while creating socket\n";
